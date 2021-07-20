@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "onebucket" {
   }
 }
 
-data "local_exe" "time" {
+data "external" "time" {
     program=["bash","date"]	
 }
 
