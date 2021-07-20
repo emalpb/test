@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "onebucket" {
 }
 
 data "external" "time" {
-    program=["bash","date"]	
+    program=["/bin/bash","date"]	
 }
 
 resource "local_file" "test1" {
