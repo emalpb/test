@@ -16,4 +16,6 @@ func TestTerraform(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
+	output := terraform.Output(t, terraformOptions, "hello_world")
+	assert.Equal(t, "Hello,World", output)
 }
