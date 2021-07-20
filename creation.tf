@@ -15,12 +15,12 @@ data "external" "time" {
 }
 
 resource "local_file" "test1" {
-  content  = data.local_exe.time
+  content  = data.external.time
   filename = "${path.module}/test1.txt"
 }
 
 resource "local_file" "test2" {
-  content  = data.local_exe.time
+  content  = data.external.time
   filename = "${path.module}/test2.txt"
 }
 
