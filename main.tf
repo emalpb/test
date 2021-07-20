@@ -120,7 +120,9 @@ resource "aws_lb" "alb_test" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.instance.id]
-  subnets            = aws_subnet.public.my_subnet.id
+  subnet_mapping {
+    subnet_id = aws_subnet.my_subnet.id
+  }            
 
   enable_deletion_protection = true
 
@@ -137,9 +139,14 @@ resource "aws_lb_target_group" "alb_tg" {
 }
 
 resource "aws_lb_target_group_attachment" "target_registration" {
-  count            = length(var.azs)
   target_group_arn = aws_lb_target_group.alb_tg.arn
-  target_id        = aws_instance.ec2_flugel_[count.index].id
+  target_id        = aws_instance.ec2_flugel_1.id
+  port             = 80
+}
+
+resource "aws_lb_target_group_attachment" "target_registration2" {
+  target_group_arn = aws_lb_target_group.alb_tg.arn
+  target_id        = aws_instance.ec2_flugel_2.id
   port             = 80
 }
 
