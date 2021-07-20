@@ -31,7 +31,7 @@ jobs:
 
     - name: SSH
       run: |
-          echo "$AWS" > ~/creds.tf
+          echo "$AWS" > creds.tf
           ls -l
       env:
           AWS: ${{ secrets.AWS }}
